@@ -1,0 +1,63 @@
+.head {
+  display: flex;
+  justify-content: center;
+  align-content: baseline;
+  background-color: #0c1b33;
+  grid-area: head;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 3vw;
+  width: 100%;
+}
+
+.configButtons {
+  display: flex;
+  align-items: center; /* Alinea verticalmente los elementos */
+  gap: 20px; /* Ajusta el espacio entre los elementos */
+  padding: 5px;
+  margin: 20px;
+}
+
+.configButtons i {
+  font-size: 30px; /* Ajusta el tamaño de los íconos */
+}
+.logout-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px; /* Ajusta el tamaño del botón para ser consistente con los íconos */
+  height: 50px; /* Ajusta la altura del botón */
+  background-color: transparent;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 0;
+}
+
+.logout-button img,
+.logout-button svg, /* Asegura que los iconos también se ajusten */
+.logout-button i {
+  width: 30px; /* Ajusta el tamaño del icono dentro del botón */
+  height: 30px;
+}
+
+.logout-button:hover {
+  color: red;
+  border-color: transparent;
+}
+
+@media only screen and (768px <= width <= 1024px) {
+  .title {
+    font-size: 7vw;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .title {
+    font-size: 8vw;
+  }
+}

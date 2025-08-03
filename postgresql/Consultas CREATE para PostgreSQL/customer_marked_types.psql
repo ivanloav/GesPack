@@ -1,0 +1,13 @@
+CREATE TABLE customer_marked_types (
+    marked_type_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    site_id BIGINT NOT NULL,                                                        -- ID_SITE (ID del sitio)
+    name TEXT NOT NULL,
+    description TEXT,
+    created_by TEXT,                                                                -- CREADOR
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,                                 -- FECHA_CREACION
+    modified_by TEXT,                                                               -- MODIFICADOR
+    modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,                                -- FECHA_MODIFICACION
+
+    UNIQUE (site_id, name)                                                        -- Clave primaria compuesta
+);
+ 

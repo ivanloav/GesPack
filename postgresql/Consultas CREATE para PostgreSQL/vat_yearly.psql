@@ -1,0 +1,28 @@
+CREATE TABLE vat_yearly (
+    vat_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    site_id BIGINT NOT NULL,
+
+    vat_type TEXT NOT NULL,       -- Tipo_IVA
+    vat_code TEXT,                -- IVA
+    vat_percentage TEXT,          -- PORCENTAJE
+    vat_description TEXT,         -- DESCRIPCION
+
+    created_by TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    modified_by TEXT,
+    modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    UNIQUE (site_id, vat_type)
+);
+
+DROP INDEX IF EXISTS idx_vat_yearly_vat_id CASCADE;
+CREATE INDEX idx_vat_yearly_vat_id ON vat_yearly (site_id, vat_id);
+
+DROP INDEX IF EXISTS idx_vat_yearly_vat_type CASCADE;
+CREATE INDEX idx_vat_yearly_vat_type ON vat_yearly (site_id, vat_type);
+
+DROP INDEX IF EXISTS idx_vat_yearly_vat_code CASCADE;
+CREATE INDEX idx_vat_yearly_vat_code ON vat_yearly (site_id, vat_code);
+
+DROP INDEX IF EXISTS idx_vat_yearly_vat_percentage CASCADE;
+CREATE INDEX idx_vat_yearly_vat_percentage ON vat_yearly (site_id, vat_percentage);

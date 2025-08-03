@@ -1,0 +1,12 @@
+DROP TABLE IF EXISTS user_sites CASCADE;
+
+CREATE TABLE user_sites (
+    user_site_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    site_id BIGINT NOT NULL,
+
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (site_id) REFERENCES sites(site_id) ON DELETE CASCADE
+);
+
+CREATE INDEX idx_user_sites_site ON user_sites (site_id);

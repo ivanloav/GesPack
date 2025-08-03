@@ -1,0 +1,21 @@
+DROP TABLE IF EXISTS users CASCADE;
+
+CREATE TABLE users (
+    user_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    user_name TEXT NOT NULL,
+    user_password TEXT NOT NULL,     -- Guarda siempre hash, no texto plano
+    email TEXT,
+    is_customer BOOLEAN DEFAULT FALSE,
+    is_admin BOOLEAN DEFAULT FALSE,
+    is_active BOOLEAN DEFAULT TRUE,
+    is_cb BOOLEAN DEFAULT FALSE,
+    is_list BOOLEAN DEFAULT FALSE,
+    bd_customer TEXT,
+    created_by TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    modified_by TEXT,
+    modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX idx_users_name ON users (user_name);
+CREATE INDEX idx_users_email ON users (email);

@@ -1,0 +1,40 @@
+CREATE TABLE order_items (
+    order_item_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,       -- Identificador único para el artículo del pedido
+    site_id BIGINT NOT NULL,                                            -- ID del sitio asociado al pedido
+    order_id BIGINT NOT NULL,                                           -- Clave foránea a Orders
+    line_number INT,                                                    -- Número de línea en el pedido
+    product_ref TEXT,                                                   -- ID_REF (Referencia al producto)
+    catalog_ref TEXT,                                                   -- REF_ART (Referencia en el catálogo)
+    catalog_code TEXT,                                                  -- CATALOGO (Código del catálogo)
+    quantity INT,                                                       -- Cantidad del artículo
+    product_description TEXT,                                           -- Articulo (Descripción del artículo)
+    unit_price NUMERIC(19, 4),                                          -- Precio (Precio unitario del artículo)
+    line_total NUMERIC(19, 4),                                          -- IMP (Importe total de la línea)
+    is_refunded BOOLEAN,                                                -- ABONADO (Estado de abonado)
+    is_stock_reserved BOOLEAN DEFAULT FALSE,                            -- RESERVASTOCK (Reserva de stock)
+    is_substitute BOOLEAN DEFAULT FALSE,                                -- IS_SUSTITUTIVO (Indica si es sustitutivo)
+    is_unavailable BOOLEAN DEFAULT FALSE,                               -- IS_SIN_ARTICULO (Indica si no hay artículo)
+    apology_phrase TEXT,                                                -- FRASE_DISCULPA (Frase de disculpa)
+    is_supplier_shipped BOOLEAN DEFAULT FALSE,                          -- IS_PESADO (Indica si el producto es pesado)
+    created_by TEXT,                                                    -- CREADOR
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,                     -- FECHA_CREACION
+    modified_by TEXT,                                                   -- MODIFICADOR
+    modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,                    -- FECHA_MODIFICACION
+
+    -- Clave única de negocio (opcional, si necesitas evitar duplicados de línea por pedido)
+    UNIQUE (site_id, order_item_id),
+    UNIQUE (site_id, order_id),
+    UNIQUE (site_id, order_id, line_number),                           -- Evitar duplicados por pedido y número de línea
+
+    -- FK compuesta
+    FOREIGN KEY (site_id, order_id) REFERENCES orders(site_id, order_id) ON DELETE CASCADE
+);
+
+    DROP INDEX IF EXISTS idx_order_items_order_id CASCADE;
+    DROP INDEX IF EXISTS idx_order_items_site_line CASCADE;
+    DROP INDEX IF EXISTS idx_order_items_site_product CASCADE;
+    -- Índices para mejorar las búsquedas
+    CREATE INDEX idx_order_items_order_id ON order_items (site_id, order_id);
+    CREATE INDEX idx_order_items_site_line ON order_items (site_id, order_id, line_number);
+    CREATE INDEX idx_order_items_site_product ON order_items (site_id, product_ref);
+

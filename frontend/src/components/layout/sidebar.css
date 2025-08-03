@@ -1,0 +1,123 @@
+.sidebar-container {
+  background-color: #0c1b33;
+  color: #b6c1cd;
+  overflow: visible;
+  transform: translateY(0);
+  transition: transform 0.3s ease-in-out; /* Asegúrate de que la transición esté definida aquí también */
+  height: 100vh;
+}
+
+.sidebar-logo {
+  padding: 20px;
+  text-align: center;
+}
+
+.sidebar-logo img {
+  border-radius: 5px;
+  margin-top: -8vh;
+}
+
+.sidebar-title {
+  color: #b6c1cd;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.sidebar-section-title {
+  color: #5f6a84;
+  padding-left: 20px;
+  margin: 10px 0;
+}
+
+.sidebar-button {
+  color: #b6c1cd;
+  font-size: 16px;
+}
+
+.sidebar-button:hover {
+  background-color: #1a273a;
+}
+
+.menu-item-level-1 {
+  padding-left: 30px;
+}
+
+.sidebar-footer {
+  padding: 20px;
+  text-align: center;
+  margin-top: auto;
+  color: #b6c1cd;
+}
+
+.footer-button {
+  background: #2d3748;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.collapse-button {
+  position: absolute;
+  top: 20px;
+  right: -15px;
+  background-color: #007b8f;
+  border: none;
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  padding: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: right 0.3s;
+}
+
+.hamburger-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: #007b8f;
+  border: none;
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 20;
+}
+
+@media only screen and (max-width: 768px) {
+  .sidebar-container {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-in-out;
+    z-index: 100;
+  }
+
+  .sidebar-container.expanded {
+    max-height: 100vh;
+  }
+
+  .sidebar-container.visible {
+    transform: translateY(0);
+  }
+
+  .sidebar-logo img {
+    border-radius: 5px;
+    margin-top: -1vh;
+  }
+}

@@ -1,0 +1,82 @@
+CREATE TABLE Orders (
+    order_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,   -- ID (Clave primaria autonumérica)
+    site_id BIGINT NOT NULL,                                    -- ID_SITE
+    order_datetime TIMESTAMP,                                   -- FECHA_PEDIDO
+    order_reference TEXT NOT NULL,                              -- PEDIDO (Código o número del pedido)
+    brand_id BIGINT NOT NULL,                                   -- Marca
+    source TEXT,                                                -- Origen
+    action_id BIGINT,                                           -- ACCION
+    action_category_id INT NOT NULL,                            -- Categoría asociada
+    action_priority_id INT,                                     -- Tipo de prioridad
+    shipping_cost NUMERIC(19, 4),                               -- ENVIO
+    mandatory_shipping_fee NUMERIC(19, 4),                      -- FRAIS
+    customer_id BIGINT,                                         -- REF_CLIENTE
+    gender TEXT,                                                -- SEXO
+    first_name TEXT,                                            -- NOM
+    last_name TEXT,                                             -- APE
+    payment_type_id BIGINT NOT NULL,                            -- TIPO_PAGO (ID que referencia a OrdersPayments)
+    is_paid BOOLEAN DEFAULT FALSE,                              -- COBRADO
+    paid_date DATE DEFAULT NULL,                                -- GESTION_COBRO
+    is_invoiced BOOLEAN DEFAULT FALSE,                          -- Facturado
+    invoiced_date DATE DEFAULT NULL,                            -- Fecha Facturado
+    order_lines BIGINT DEFAULT 0,                               -- LINEAS_PEDIDO
+    weight FLOAT DEFAULT 0,                                     -- Peso
+    client_type NUMERIC(18, 0),                                 -- TIPO_CLIENTE
+    participant TEXT,                                           -- PARTICIPANTE
+    order_amount NUMERIC(19,4),                                 -- IMPORTE_PEDIDO
+    bi1 NUMERIC(19,4),                                          -- BI1
+    bi2 NUMERIC(19,4),                                          -- BI2
+    tva1 NUMERIC(19,4),                                         -- TVA1
+    tva2 NUMERIC(19,4),                                         -- TVA2
+    return_status TEXT,                                         -- DEVOLUCION
+    shipping_type TEXT,                                         -- TIPO_ENVIO
+    value_em NUMERIC(18, 0),                                    -- VALOR
+    is_callcenter BOOLEAN DEFAULT FALSE,                        -- CALLCENTER
+    is_stock_reserved BOOLEAN DEFAULT FALSE,                    -- RESERVASTOCK
+    last_letter TEXT,                                           -- ULTIMA_CARTA
+    is_upselling BOOLEAN DEFAULT FALSE,                         -- UPSELLING
+    is_upselling_purchase BOOLEAN DEFAULT FALSE,                -- COMPRA_UPSELLING
+    upselling_amount NUMERIC(19,4),                             -- IMPORTE_UPSELLING
+    upselling_offer TEXT,                                       -- OFERTA_UPSELLING
+    is_deferred BOOLEAN DEFAULT FALSE,                          -- APLAZADO
+    transport TEXT,                                             -- TRSP
+    discount NUMERIC(19,4),                                     -- RED10 (Descuento del 10%)
+    is_privileged BOOLEAN DEFAULT FALSE,                        -- IS_PRIVILEGIE
+    club_card_fee NUMERIC(19,4),                                -- IMPCARTECLUB
+    club_card_discount NUMERIC(19,4),                           -- REDCARTECLUB
+    is_shipped_by_supplier BOOLEAN DEFAULT FALSE,               -- IS_PESADO
+    is_partially_shipped_by_supplier BOOLEAN DEFAULT FALSE,     -- IS_PESADO_PARCIAL
+    is_supplier BOOLEAN DEFAULT FALSE,                          -- FOURNISSEUR
+    is_substitute BOOLEAN DEFAULT FALSE,                        -- IS_SUSTITUTIVO
+    is_no_article BOOLEAN DEFAULT FALSE,                        -- IS_SIN_ARTICULO
+    no_article_amount NUMERIC(19,4),                            -- IMP_SINART
+    is_bav BOOLEAN DEFAULT FALSE,                               -- IS_BAV
+    bav_amount NUMERIC(19,4),                                   -- IMP_BAV
+    bav_order TEXT,                                             -- PEDIDO_BAV
+    amount_due NUMERIC(19,4),                                   -- IMP_A_PAGAR
+    next_available_number TEXT,                                 -- NextAvailableNumber
+    is_generated_bav BOOLEAN DEFAULT FALSE,                     -- IS_BAV_GENERADO
+    generated_bav_amount NUMERIC(19,4),                         -- IMP_BAV_GENERADO
+    is_annulled BOOLEAN DEFAULT FALSE,                          -- ANULADO
+    annulled_date DATE,                                         -- FECHA_ANULADO
+    annulled_by TEXT,                                           -- ANULADO_POR
+    created_by TEXT,                                            -- GRABADOR
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,             -- FECHA_GRABACION
+    modified_by TEXT,                                           -- MODIFICADOR
+    modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,            -- FECHA_MODIFICACION
+
+    UNIQUE (site_id, order_reference),                          -- Clave compuesta en Orders
+    UNIQUE (site_id, order_id),                                 -- Clave primaria compuesta en Orders
+
+    -- Clave foránea compuesta
+    FOREIGN KEY (site_id, action_id) REFERENCES actions(site_id, action_id) ON DELETE RESTRICT,
+    FOREIGN KEY (site_id, customer_id) REFERENCES customers(site_id, customer_id) ON DELETE RESTRICT,
+    FOREIGN KEY (site_id, action_priority_id) REFERENCES action_priority_types(site_id, action_priority_id) ON DELETE RESTRICT, -- Referencia a tipos de prioridad
+    FOREIGN KEY (site_id, action_category_id) REFERENCES action_categories(site_id, action_category_id) ON DELETE RESTRICT, -- Referencia a categorías
+    FOREIGN KEY (site_id, payment_type_id) REFERENCES order_payments(site_id, order_payments_id) ON DELETE RESTRICT, -- Referencia a tipos de pago
+    FOREIGN KEY (site_id, brand_id) REFERENCES brands(site_id, brand_id) ON DELETE RESTRICT -- Referencia a brands
+);
+    
+    CREATE INDEX idx_orders_order_id ON orders (order_id);
+    CREATE INDEX idx_orders_customer_id ON orders (customer_id);
+    CREATE INDEX idx_orders_order_reference ON orders (site_id, order_reference);

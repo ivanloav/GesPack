@@ -1,11 +1,11 @@
-
 <p align="center">
-  <img src="docs/GesPack.png" alt="GesPack" width="240"/>
+  <img src="readme-assets/GesPack.png" alt="GesPack" width="240"/>
 </p>
 
 # 📦 GesPack – Monorepo de Gestión Multiempresa
 
-**GesPack** es una solución integral para la gestión de pedidos, clientes, inventario, facturación y comunicaciones, diseñada para entornos multiempresa (multi-tenant). Incluye frontend (React), backend (Node/NestJS), documentación y scripts de despliegue, todo organizado en un único repositorio.
+**GesPack** es una solución integral para la gestión de pedidos, clientes, inventario, facturación y comunicaciones, diseñada para entornos multiempresa (*multi-tenant*).
+Incluye **frontend** (React + TypeScript), **backend** (NestJS), documentación técnica (Docusaurus), configuración de **NGINX con HTTPS**, y scripts de despliegue automatizado, todo en un único repositorio.
 
 ---
 
@@ -13,82 +13,135 @@
 
 ```plaintext
 GesPack/
-├── backend/          # API y lógica de negocio (Node.js + NestJS)
-├── frontend/         # Aplicación web (React + TypeScript)
-├── docs/             # Documentación técnica y funcional (Markdown)
-├── postgresql/       # Scripts de base de datos, migraciones y modelos
-├── scripts/          # Utilidades y scripts de despliegue automático
-└── ...               # Otros recursos, configuraciones y utilidades
+├── backend/           # API y lógica de negocio (NestJS + TypeORM + PostgreSQL)
+├── frontend/          # Aplicación web (React + TypeScript + Vite)
+├── docs/              # Documentación técnica (Docusaurus)
+├── nginx/             # Configuración NGINX + Certbot (HTTPS)
+├── postgresql/        # Scripts de BBDD (.psql) y migraciones
+├── scripts/           # Scripts de despliegue y utilidades
+├── docker-compose.yml # Orquestación de servicios
+└── README.md          # Este archivo
 ```
 
 ---
 
 ## 🚀 ¿Qué incluye GesPack?
 
-* **Backend API:** Gestión de clientes, pedidos, productos, inventario y facturación.
-* **Frontend web:** Interfaz de usuario moderna, responsiva y multiusuario.
-* **Multi-tenant:** Aislamiento completo por cliente (`site_id` en todas las tablas).
-* **Documentación:** Manuales, diagramas y especificaciones técnicas completas en `/docs`.
-* **Scripts de despliegue:** Bash para automatización de copias y reinicio de Docker.
-* **Migraciones PostgreSQL:** Scripts y modelos optimizados para despliegue multiempresa.
+* **Frontend** → React + Vite con hot reload, responsive y multiusuario.
+* **Backend** → NestJS con autenticación JWT, gestión de datos multi-tenant y API RESTful.
+* **NGINX + HTTPS** → Servidor inverso con Certbot para certificados SSL automáticos.
+* **Multi-tenant** → `site_id` obligatorio en todas las tablas para aislamiento por cliente.
+* **Documentación** → Docusaurus accesible vía `/docs/`.
+* **Despliegue automatizado** → Scripts Bash para Mac → Ubuntu con `rsync` y Docker.
+* **Base de datos** → PostgreSQL 16.x con índices, claves foráneas y auditoría en todas las tablas.
 
 ---
 
-## 🛠️ Despliegue rápido local y en servidor
+## 🛠️ Despliegue rápido
 
-### **1. Clonar el repo**
+### 1️⃣ Clonar el repositorio
 
 ```bash
 git clone git@github.com:TuUsuario/GesPack.git
 cd GesPack
 ```
 
-### **2. Revisar scripts de deploy**
+### 2️⃣ Crear la red externa
 
-En `/scripts/` y en los manuales de `/docs/` tienes instrucciones para:
+> Solo la primera vez:
 
-* **Desplegar Frontend y Backend** en servidores Ubuntu vía `rsync` y Docker
-* **Automatizar el proceso con GitHub Actions o scripts Bash**
-* **Configurar Stormshield, NAT, y DNS para publicación web**
+```bash
+docker network create --driver bridge shared-network
+```
 
-### **3. Base de datos**
+### 3️⃣ Despliegue con script global
 
-* Todos los modelos y scripts `.psql` en `/postgresql/`
-* Diseño multi-tenant, compatible con PostgreSQL 16.x
-* Diagrama ER y explicación de relaciones en `/docs/`
+En **Mac**:
+
+```bash
+bash scripts/deploy_all.sh
+```
+
+Este script:
+
+1. Detiene y elimina contenedores antiguos.
+2. Limpia imágenes y redes huérfanas.
+3. Sincroniza frontend, backend, docs y nginx.
+4. Reconstruye y levanta todos los servicios.
 
 ---
 
-## 📝 Documentación y ayuda
+## 🌐 Servicios en producción
 
-* **Manual de despliegue**: `/docs/Manual Deploy GesPack Frontend – Mac a Ubuntu.md`
-* **Manual Stormshield**: `/docs/Manual Stormshield – Publicar GesPack.md`
-* **Modelo de datos**: `/docs/README.md`
-* **Preguntas frecuentes y buenas prácticas**: incluidas en cada manual y en la documentación global.
+| Servicio | URL                                                                | Puerto |
+| -------- | ------------------------------------------------------------------ | ------ |
+| Frontend | [https://gespack.parcelontime.es](https://gespack.parcelontime.es) | 443    |
+| Backend  | `https://gespack.parcelontime.es/api/`                             | 443    |
+| Docs     | `https://gespack.parcelontime.es/docs/`                            | 443    |
+
+---
+
+## 🗄️ Base de datos
+
+* **Modelo**: PostgreSQL 16.x
+* **Diseño**: multi-tenant (`site_id` en todas las tablas)
+* **Scripts**: `/postgresql/*.psql` listos para `psql`
+* **Migraciones**: ordenadas según dependencias
+* **Auditoría estándar**:
+
+  * `created_by`, `created_at`, `modified_by`, `modified_at`
+* **Optimización**: índices combinados (`site_id` + campo de búsqueda)
+
+---
+
+## 📝 Documentación
+
+Toda la documentación extendida se encuentra en Docusaurus (`/docs/`) y cubre:
+
+* Manual de despliegue Frontend/Backend
+* Configuración NGINX + Certbot
+* Publicación a través de Stormshield
+* Modelo de datos y ER completo
+* Migración de SQL Server a PostgreSQL
 
 ---
 
 ## 💡 Buenas prácticas en GesPack
 
-* **Todos los nombres de tablas y campos en inglés** y `snake_case`
-* **Auditoría completa:** Todas las tablas tienen campos `created_by`, `created_at`, `modified_by`, `modified_at`
-* **site\_id obligatorio** en tablas principales y foráneas
-* **Índices y claves foráneas** definidos para optimizar rendimiento y consistencia
-* **Scripts de backup y restauración** recomendados en `/scripts/`
+* Tablas y campos en **snake\_case** y en inglés.
+* Uso de **índices compuestos** para optimizar queries multi-tenant.
+* Scripts de **backup** y **restore** documentados.
+* Separación clara de servicios en **Docker Compose**.
+* Mantener `readme-assets/` para imágenes del README.
+
+---
+
+## 🔍 Diagrama de infraestructura
+
+```mermaid
+graph TD
+    subgraph Servidor_Ubuntu
+        NGINX[NGINX + Certbot] --> Frontend[Frontend React]
+        NGINX --> Backend[Backend NestJS]
+        NGINX --> Docs[Docusaurus]
+        Backend --> DB[(PostgreSQL 16.x)]
+    end
+    Usuario[👤 Usuario] -->|HTTPS| NGINX
+```
 
 ---
 
 ## 👥 Contribuir
 
-1. Abre un Issue o Pull Request para sugerencias o cambios
-2. Sigue la estructura del monorepo
-3. Actualiza la documentación si tu cambio afecta a la lógica de negocio o estructura de datos
+1. Abre un *issue* o *pull request*.
+2. Respeta la estructura del monorepo.
+3. Actualiza la documentación si tu cambio afecta a despliegue o BBDD.
 
 ---
 
 ## 📧 Contacto
 
-* **Responsable del proyecto:** Iván López
+* **Responsable:** Iván López
 * **Email:** [ilopez@parcelontime.es](mailto:ilopez@parcelontime.es)
 
 ---
@@ -96,13 +149,5 @@ En `/scripts/` y en los manuales de `/docs/` tienes instrucciones para:
 ## 📄 Licencia
 
 Este proyecto y su documentación son propiedad exclusiva de Parcel On Time S.R.L.
-Queda prohibida la copia, reproducción o distribución total o parcial sin el consentimiento expreso del titular.
-© 2024 Iván / Parcel On Time S.R.L. – Todos los derechos reservados.
-
----
-
-## 🌐 Enlaces útiles
-
-* [GesPack en producción](https://gespack.parcelontime.es) (si está publicado)
-* [Documentación de migración SQL → PostgreSQL](docs/README.md)
-* [Diagrama ER completo](docs/ER-Diagram.png)
+Prohibida su copia o distribución sin autorización expresa.
+© 2025 Iván / Parcel On Time S.R.L. – Todos los derechos reservados.

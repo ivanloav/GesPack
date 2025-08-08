@@ -48,7 +48,7 @@
 
    * **Source Interface:** Internet
    * **Destination Interface:** Tu interfaz pública
-   * **Original Destination:** *Tu IP pública externa (195.55.109.5)*
+   * **Original Destination:** *Tu IP pública externa (195.55.109.2)*
    * **Translated Destination:** *El objeto GesPack\_Ubuntu (192.168.1.100, tu IP interna)*
    * **Service:** http, https (o el/los servicios que expongas)
    * **NAT Type:** Static NAT (Destination NAT)

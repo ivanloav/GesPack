@@ -20,6 +20,7 @@ import {
   FaBars,
 } from "react-icons/fa";
 import styled from "@emotion/styled";
+import { useNavigate } from "react-router-dom";
 import "./sidebar.css";
 
 interface CustomSidebarProps {
@@ -41,6 +42,8 @@ export const CustomSidebar: React.FC<CustomSidebarProps> = ({
   const [expandedNestedSubMenu, setExpandedNestedSubMenu] = useState<
     string | null
   >(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleResize = () => {
@@ -93,6 +96,16 @@ export const CustomSidebar: React.FC<CustomSidebarProps> = ({
     );
   };
 
+  const handleItemClick = (path: string) => {
+    // 1. Puedes cerrar el submenu si lo deseas
+    setExpandedSubMenu(null);
+    setExpandedNestedSubMenu(null);
+
+    // 2. Redirige a la ruta
+    navigate(path);
+  };
+
+
   return (
     <div
       className="dashboard-container"
@@ -124,8 +137,10 @@ export const CustomSidebar: React.FC<CustomSidebarProps> = ({
           <img
             src={`${import.meta.env.BASE_URL}${isCollapsed ? "GesPack-Icono.png" : "GesPack-Sidebar.png"}`}
             alt="Logo"
-            style={{ width: isCollapsed ? "40px" : "120px" }}
-          />
+            style={{ width: isCollapsed ? "40px" : "120px" }} 
+            onClick={(e) => {
+              e.preventDefault(); 
+              handleItemClick("/user/dashboard");}} />
         </div>
 
         <Menu
@@ -141,7 +156,7 @@ export const CustomSidebar: React.FC<CustomSidebarProps> = ({
             }),
           }}
         >
-          {!isCollapsed && <h4 className="sidebar-section-title">GENERAL</h4>}
+          {!isCollapsed && <h4 className="sidebar-section-title">General</h4>}
 
           <SubMenu
             icon={<FaGem size={isCollapsed ? 16 : 20} />}
@@ -157,7 +172,13 @@ export const CustomSidebar: React.FC<CustomSidebarProps> = ({
             open={expandedSubMenu === "pedidos"}
             onClick={() => handleSubMenuClick("pedidos")}
           >
-            <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
+          <MenuItem
+            icon={<FaChartPie size={isCollapsed ? 16 : 20} />}
+            onClick={(e) => {
+              e.stopPropagation();           // Evita que el SubMenu se cierre
+              handleItemClick("/user/order-entry");
+            }}
+            >
               Grabación de pedidos
             </MenuItem>
             <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
@@ -257,13 +278,13 @@ export const CustomSidebar: React.FC<CustomSidebarProps> = ({
             onClick={() => handleSubMenuClick("Productos")}
           >
             <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
-              Pie chart
+              Alta de productos
             </MenuItem>
             <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
-              Line chart
+              Modificación de productos
             </MenuItem>
             <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
-              Bar chart
+              Baja de productos
             </MenuItem>
           </SubMenu>
 
@@ -295,8 +316,24 @@ export const CustomSidebar: React.FC<CustomSidebarProps> = ({
             onClick={() => handleSubMenuClick("Listados")}
           >
             <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
-              Pie chart
+              Acciones
             </MenuItem>
+            <SubMenu
+              icon={<FaChartBar size={isCollapsed ? 16 : 20} />}
+              label="Pedidos"
+              open={expandedNestedSubMenu === "listadoPedidos"}
+              onClick={() => handleNestedSubMenuClick("listadoPedidos")}
+            >
+              <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
+                Todos los pedidos
+              </MenuItem>
+              <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
+                Pedidos por fecha
+              </MenuItem>
+              <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
+                Bar chart
+              </MenuItem>
+            </SubMenu>
             <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
               Line chart
             </MenuItem>
@@ -309,7 +346,7 @@ export const CustomSidebar: React.FC<CustomSidebarProps> = ({
             Importar ficheros
           </MenuItem>
 
-          {!isCollapsed && <h4 className="sidebar-section-title">ADMIN</h4>}
+          {!isCollapsed && <h4 className="sidebar-section-title">Admin</h4>}
 
           <MenuItem
             icon={<FaFileAlt size={isCollapsed ? 16 : 20} />}

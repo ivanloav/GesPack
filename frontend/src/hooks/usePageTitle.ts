@@ -10,14 +10,14 @@ export const usePageTitle = (): string => {
         return "Iniciar Sesión";
       case "/user/dashboard":
         return "Dashboard";
+      case "/user/order-entry":
+        return "Grabación de Pedidos";
       case "/user/Products":
         return "Productos";
       case "/user/inventario":
         return "Inventario";
       case "/user/clientes":
         return "Clientes";
-      case "/user/orders":
-        return "Pedidos";
       default:
         return "Default Title";
     }

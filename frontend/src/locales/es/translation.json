@@ -1,0 +1,17 @@
+{
+  "menu": {
+    "orders": {
+      "entry": "Grabación de pedidos",
+      "capture": "Captura de pedidos",
+      "recording": "Registro de pedidos",
+      "logging": "Registro de pedidos"
+    },
+    "customers": {
+      "new": "Nuevo cliente",
+      "edit": "Editar cliente"
+    }
+  },
+  "sidebar": {
+    "logoAlt": "Logo de la compañía"
+  }
+}

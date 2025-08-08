@@ -9,6 +9,7 @@ import { PrivateRoute } from "./components/PrivateRoute";
 import { ScreenLayout } from "./components/layout/MainScreenLayout";
 import { LoginForm } from "./components/login/loginForm";
 import { Dashboard } from "./components/dashboard/dashboard";
+import { OrderEntry } from "./components/orders/orderEntry";
 import { useEffect } from "react";
 import { checkTokenExpiration } from "./services/checkTokenExpiration";
 
@@ -31,10 +32,11 @@ function App() {
         <Route element={<PrivateRoute />}>
           <Route path="/user" element={<ScreenLayout />}>
             <Route path="/user/dashboard" element={<Dashboard />} />
+            <Route path="/user/order-entry" element={<OrderEntry />} />
             {/*
             <Route path="/user/inventario" element={<Inventario />} />
             <Route path="/user/Products" element={<Products />} />
-            <Route path="/user/orders" element={<Orders />} />
+            
           */}
           </Route>
         </Route>

@@ -9,8 +9,7 @@ import {
 import { useTranslation } from "react-i18next";
 import {
   FaGem, FaChartBar, FaShoppingCart, FaPalette, FaCalendar,
-  FaFileAlt, FaHeart, FaChartPie, FaChevronLeft, FaChevronRight, FaBars, 
-  FaRegMoneyBillAlt, FaUserAlt, FaListUl, FaClipboardList, FaReply
+  FaFileAlt, FaHeart, FaChartPie, FaChevronLeft, FaChevronRight, FaBars
 } from "react-icons/fa";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
@@ -127,61 +126,151 @@ export const CustomSidebar: React.FC<CustomSidebarProps> = ({ onToggleCollapse }
         >
           {!isCollapsed && <h4 className="sidebar-section-title">{t("sections.general")}</h4>}
 
-          <MenuItem
-            icon={<FaClipboardList size={isCollapsed ? 16 : 20} />}
+          <SubMenu
+            icon={<FaGem size={isCollapsed ? 16 : 20} />}
             suffix={!isCollapsed && (
               <div style={{ display: "flex", gap: "4px" }}>
                 <Label color="#7e22ce">{t("badges.hot")}</Label>
                 <Label color="#22c55e">{t("badges.beta")}</Label>
               </div>
             )}
-            onClick={(e) => { e.stopPropagation(); handleItemClick("/user/order-list"); }}
+            label={t("menus.orders.label")}
+            open={expandedSubMenu === "orders"}
+            onClick={() => handleSubMenuClick("orders")}
           >
-            {t("menus.orders.label")}
+            <MenuItem
+              icon={<FaChartPie size={isCollapsed ? 16 : 20} />}
+              onClick={(e) => { e.stopPropagation(); handleItemClick("/user/order-entry"); }}
+            >
+              {t("menus.orders.entry")}
+            </MenuItem>
+            <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
+              {t("menus.orders.edit")}
+            </MenuItem>
+            <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
+              {t("menus.orders.query")}
+            </MenuItem>
+            <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
+              {t("menus.orders.cancel")}
+            </MenuItem>
+            <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
+              {t("menus.orders.unpaid")}
+            </MenuItem>
+
+            <SubMenu
+              icon={<FaChartBar size={isCollapsed ? 16 : 20} />}
+              label={t("menus.orders.correspondence.label")}
+              open={expandedNestedSubMenu === "correspondence"}
+              onClick={() => handleNestedSubMenuClick("correspondence")}
+            >
+              <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
+                {t("menus.orders.correspondence.pie")}
+              </MenuItem>
+              <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
+                {t("menus.orders.correspondence.line")}
+              </MenuItem>
+              <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
+                {t("menus.orders.correspondence.bar")}
+              </MenuItem>
+            </SubMenu>
+          </SubMenu>
+
+          <MenuItem icon={<FaShoppingCart size={isCollapsed ? 16 : 20} />}>
+            {t("menus.collect")}
           </MenuItem>
-          
-          <MenuItem
-            icon={<FaRegMoneyBillAlt size={isCollapsed ? 16 : 20} />}
+
+          <SubMenu
+            icon={<FaChartBar size={isCollapsed ? 16 : 20} />}
             suffix={!isCollapsed && <Label color="#22c55e">{t("badges.beta")}</Label>}
-            onClick={(e) => { e.stopPropagation(); handleItemClick("/user/billing-list"); }}
+            label={t("menus.billing.label")}
+            open={expandedSubMenu === "billing"}
+            onClick={() => handleSubMenuClick("billing")}
           >
-            {t("menus.billing.label")}
-          </MenuItem>
+            <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
+              {t("menus.billing.pie")}
+            </MenuItem>
+            <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
+              {t("menus.billing.line")}
+            </MenuItem>
+            <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
+              {t("menus.billing.bar")}
+            </MenuItem>
+          </SubMenu>
 
-          <MenuItem
-            icon={<FaUserAlt size={isCollapsed ? 16 : 20} />}
-            onClick={(e) => { e.stopPropagation(); handleItemClick("/user/customer-list"); }}
+          <SubMenu
+            icon={<FaChartBar size={isCollapsed ? 16 : 20} />}
+            label={t("menus.customers.label")}
+            open={expandedSubMenu === "customers"}
+            onClick={() => handleSubMenuClick("customers")}
           >
-            {t("menus.customers.label")}
-          </MenuItem>
+            <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
+              {t("menus.customers.create")}
+            </MenuItem>
+            <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
+              {t("menus.customers.edit")}
+            </MenuItem>
+            <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
+              {t("menus.customers.delete")}
+            </MenuItem>
+            <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
+              {t("menus.customers.participants")}
+            </MenuItem>
+          </SubMenu>
 
-          <MenuItem
-            icon={<FaListUl size={isCollapsed ? 16 : 20} />}
-            onClick={(e) => { e.stopPropagation(); handleItemClick("/user/action-list"); }}
+          <SubMenu
+            icon={<FaChartBar size={isCollapsed ? 16 : 20} />}
+            label={t("menus.actions.label")}
+            open={expandedSubMenu === "actions"}
+            onClick={() => handleSubMenuClick("actions")}
           >
-            {t("menus.actions.label")}
-        </MenuItem>
+            <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
+              {t("menus.actions.create")}
+            </MenuItem>
+            <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
+              {t("menus.actions.edit")}
+            </MenuItem>
+            <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
+              {t("menus.actions.delete")}
+            </MenuItem>
+          </SubMenu>
 
-          <MenuItem
-            icon={<FaShoppingCart size={isCollapsed ? 16 : 20} />}
-            onClick={(e) => { e.stopPropagation(); handleItemClick("/user/product-list"); }}
+          <SubMenu
+            icon={<FaChartBar size={isCollapsed ? 16 : 20} />}
+            label={t("menus.products.label")}
+            open={expandedSubMenu === "products"}
+            onClick={() => handleSubMenuClick("products")}
           >
-            {t("menus.products.label")}
-          </MenuItem>
+            <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
+              {t("menus.products.create")}
+            </MenuItem>
+            <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
+              {t("menus.products.edit")}
+            </MenuItem>
+            <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
+              {t("menus.products.delete")}
+            </MenuItem>
+          </SubMenu>
 
-          <MenuItem
-            icon={<FaReply size={isCollapsed ? 16 : 20} />}
-            onClick={() => handleSubMenuClick("returns")}
+          <SubMenu
+            icon={<FaChartBar size={isCollapsed ? 16 : 20} />}
+            label={t("menus.refunds.label")}
+            open={expandedSubMenu === "refunds"}
+            onClick={() => handleSubMenuClick("refunds")}
           >
-            {t("menus.returns.label")}
-          </MenuItem>
+            <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
+              {t("menus.refunds.pie")}
+            </MenuItem>
+            <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
+              {t("menus.refunds.line")}
+            </MenuItem>
+            <MenuItem icon={<FaChartPie size={isCollapsed ? 16 : 20} />}>
+              {t("menus.refunds.bar")}
+            </MenuItem>
+          </SubMenu>
 
           <MenuItem icon={<FaPalette size={isCollapsed ? 16 : 20} />}>
             {t("menus.theme")}
           </MenuItem>
-
-{/*--------------------------------- CONTINUAR AQUÍ ---------------------------------*/}
-
 
           <SubMenu
             icon={<FaChartBar size={isCollapsed ? 16 : 20} />}

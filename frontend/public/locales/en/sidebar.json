@@ -1,0 +1,77 @@
+{
+  "sections": { "general": "General", "admin": "Admin" },
+  "badges": { "hot": "Hot", "beta": "Beta" },
+  "common": {
+    "logout": "Logout"
+  },
+  "menus": {
+    "orders": {
+      "label": "Orders",
+      "entry": "Order entry",
+      "edit": "Order edit",
+      "query": "Order query",
+      "cancel": "Order cancellation",
+      "unpaid": "Unpaid orders",
+      "correspondence": {
+        "label": "Correspondence",
+        "pie": "Pie chart",
+        "line": "Line chart",
+        "bar": "Bar chart"
+      }
+    },
+    "collect": "Order collection",
+    "billing": {
+      "label": "Billing",
+      "pie": "Pie chart",
+      "line": "Line chart",
+      "bar": "Bar chart"
+    },
+    "customers": {
+      "label": "Customers",
+      "create": "Create customer",
+      "edit": "Edit customer",
+      "delete": "Delete customer",
+      "participants": "Participating customers"
+    },
+    "actions": {
+      "label": "Actions",
+      "create": "Create action",
+      "edit": "Edit action",
+      "delete": "Delete action"
+    },
+    "products": {
+      "label": "Products",
+      "create": "Create product",
+      "edit": "Edit product",
+      "delete": "Delete product"
+    },
+    "returns": {
+      "label": "Returns",
+      "pie": "Pie chart",
+      "line": "Line chart",
+      "bar": "Bar chart"
+    },
+    "theme": "Theme",
+    "reports": {
+      "label": "Reports",
+      "actions": "Actions",
+      "orders": {
+        "label": "Orders",
+        "all": "All orders",
+        "byDate": "Orders by date",
+        "bar": "Bar chart"
+      },
+      "line": "Line chart",
+      "bar": "Bar chart"
+    },
+    "import": "Import files",
+    "documentation": "Documentation",
+    "calendar": "Calendar",
+    "examples": "Examples"
+  },
+  "footer": {
+    "text1": "Pro sidebar is also available as a React package",
+    "btn": "Stars",
+    "text2": "Check it out!"
+  }
+}

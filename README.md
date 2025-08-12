@@ -59,7 +59,7 @@ docker network create --driver bridge shared-network
 En **Mac**:
 
 ```bash
-bash scripts/deploy_all.sh
+bash scripts/deploy_all_GesPack.sh
 ```
 
 Este script:

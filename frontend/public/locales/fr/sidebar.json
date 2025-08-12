@@ -1,0 +1,77 @@
+{
+  "sections": { "general": "Général", "admin": "Admin" },
+  "badges": { "hot": "Hot", "beta": "Beta" },
+  "common": {
+    "logout": "Déconnexion"
+  },
+  "menus": {
+    "orders": {
+      "label": "Commandes",
+      "entry": "Saisie de commandes",
+      "edit": "Modification de commandes",
+      "query": "Consultation des commandes",
+      "cancel": "Annulation de commandes",
+      "unpaid": "Commandes impayées",
+      "correspondence": {
+        "label": "Correspondance",
+        "pie": "Camembert",
+        "line": "Courbe",
+        "bar": "Histogramme"
+      }
+    },
+    "collect": "Encaissement des commandes",
+    "billing": {
+      "label": "Facturation",
+      "pie": "Camembert",
+      "line": "Courbe",
+      "bar": "Histogramme"
+    },
+    "customers": {
+      "label": "Clients",
+      "create": "Création de clients",
+      "edit": "Modification de clients",
+      "delete": "Suppression de clients",
+      "participants": "Clients participants"
+    },
+    "actions": {
+      "label": "Actions",
+      "create": "Création d’actions",
+      "edit": "Modification d’actions",
+      "delete": "Suppression d’actions"
+    },
+    "products": {
+      "label": "Produits",
+      "create": "Création de produits",
+      "edit": "Modification de produits",
+      "delete": "Suppression de produits"
+    },
+    "returns": {
+      "label": "Retours",
+      "pie": "Camembert",
+      "line": "Courbe",
+      "bar": "Histogramme"
+    },
+    "theme": "Thème",
+    "reports": {
+      "label": "Listes",
+      "actions": "Actions",
+      "orders": {
+        "label": "Commandes",
+        "all": "Toutes les commandes",
+        "byDate": "Commandes par date",
+        "bar": "Histogramme"
+      },
+      "line": "Courbe",
+      "bar": "Histogramme"
+    },
+    "import": "Importer des fichiers",
+    "documentation": "Documentation",
+    "calendar": "Calendrier",
+    "examples": "Exemples"
+  },
+  "footer": {
+    "text1": "Pro sidebar est aussi disponible en package React",
+    "btn": "Stars",
+    "text2": "À découvrir !"
+  }
+}

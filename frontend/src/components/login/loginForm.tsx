@@ -55,7 +55,7 @@ export function LoginForm() {
               <div className="spinner"></div>
             </div>
           )}
-          <img src="/GesPack.png" alt="Logo" className="logo" />
+          <img src="images/GesPack.png" alt="Logo" className="logo" />
           {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
           <form className="formLogin" onSubmit={handleLogin}>
             <div className="inputsButtonContainer">

@@ -1,10 +1,16 @@
 {
   "sections": { "general": "General", "admin": "Admin" },
-  "badges": { "hot": "Hot", "beta": "Beta" },
+  "badges": { 
+    "hot": "Hot", 
+    "beta": "Beta", 
+    "wip": "WIP"
+  },
+
   "common": {
     "logout": "Cerrar sesión"
   },
   "menus": {
+    "dashboard": { "label": "Tablero" },
     "orders": {
       "label": "Pedidos",
       "entry": "Grabación de pedidos - A ELIMINAR",
@@ -51,8 +57,8 @@
       "line": "Gráfico de líneas - A ELIMINAR",
       "bar": "Gráfico de barras - A ELIMINAR"
     },
-    "theme": "Tema",
-    "reports - A ELIMINAR": {
+    
+    "reports": {
       "label": "Listados - A ELIMINAR",
       "actions": "Acciones - A ELIMINAR",
       "orders - A ELIMINAR": {
@@ -64,7 +70,23 @@
       "line": "Gráfico de líneas - A ELIMINAR",
       "bar": "Gráfico de barras - A ELIMINAR"
     },
-    "import": "Importar ficheros - A ELIMINAR",
+    "import": "Importar ficheros",
+    
+    "admin": {
+      "label": "Admin",
+      "users": {
+        "label": "Usuarios",
+        "stats": "Estadísticas"
+      },
+      "roles": {
+        "label": "Roles"
+      },
+      "settings": {
+        "label": "Configuración",
+        "general": "Configuración general - A ELIMINAR",
+        "notifications": "Notificaciones - A ELIMINAR"
+      }
+    },
     "documentation": "Documentación",
     "calendar": "Calendario",
     "examples": "Ejemplos"

@@ -11,7 +11,7 @@ i18n
   .init({
     fallbackLng: 'es',
     supportedLngs: ['es', 'en', 'fr'],
-    ns: ['translation', 'sidebar', 'lang'],
+    ns: ["translation", "sidebar", "breadcrumb", "common", "lang", "titles", "dashboard"],
     defaultNS: 'translation',
     backend: { loadPath: '/locales/{{lng}}/{{ns}}.json' },
     detection: { order: ['querystring', 'localStorage', 'navigator'], caches: ['localStorage'] },

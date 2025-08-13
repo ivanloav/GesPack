@@ -2,8 +2,7 @@ import "./Topbar.css";
 import { useNavigate } from "react-router-dom";
 //import { usePageTitle } from "../../hooks/usePageTitle";
 import { handleLogout } from "../../hooks/chechAuth";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { FaSignOutAlt } from "react-icons/fa";
 import LanguageDropdown from "../LanguageDropdown"; // Asegúrate de que la ruta sea correcta
 import { useTranslation } from "react-i18next";
 
@@ -28,7 +27,7 @@ export function Topbar({ className = "" }: TopbarProps) {
         </div>
 
         <button className="btn btn-light logout-button" onClick={logout}>
-          <FontAwesomeIcon icon={faSignOutAlt} size="lg" />
+          <FaSignOutAlt size="lg" />
           <span style={{ marginLeft: 8 }}>{t("common.logout")}</span>
         </button>
       </div>

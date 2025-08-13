@@ -1,0 +1,6 @@
+{
+  "login": "Login",
+  "home": "Home",
+  "dashboard": "Tableau de bord",
+  "customerDetail": "Client {{id}}"
+}

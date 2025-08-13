@@ -16,6 +16,7 @@
   border-radius: 5px;
   margin-top: -8vh;
   cursor: pointer;
+  z-index: 100;
 }
 
 .sidebar-title {

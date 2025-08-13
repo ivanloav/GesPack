@@ -1,10 +1,16 @@
 {
   "sections": { "general": "General", "admin": "Admin" },
-  "badges": { "hot": "Hot", "beta": "Beta" },
+  "badges": { 
+    "hot": "Hot", 
+    "beta": "Beta",
+    "wip": "WIP"
+  },
+
   "common": {
     "logout": "Logout"
   },
   "menus": {
+    "dashboard": { "label": "Dashboard" },
     "orders": {
       "label": "Orders",
       "entry": "Order entry",
@@ -51,7 +57,7 @@
       "line": "Line chart",
       "bar": "Bar chart"
     },
-    "theme": "Theme",
+    
     "reports": {
       "label": "Reports",
       "actions": "Actions",
@@ -65,6 +71,23 @@
       "bar": "Bar chart"
     },
     "import": "Import files",
+    
+    "admin": {
+      "label": "Admin",
+      "users": {
+        "label": "Users",
+        "stats": "Statistics"
+      },
+      "roles": {
+        "label": "Roles"
+      },
+      "settings": {
+        "label": "Settings",
+        "general": "General settings - TO BE REMOVED",
+        "notifications": "Notifications - TO BE REMOVED"
+      }
+    },
+
     "documentation": "Documentation",
     "calendar": "Calendar",
     "examples": "Examples"

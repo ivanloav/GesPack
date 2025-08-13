@@ -1,0 +1,12 @@
+{
+    "title": "Tableau de bord",
+    "sections": {
+      "general": "Général",
+      "admin": "Administration"
+    },
+    "badges": {
+      "hot": "Populaire",
+      "beta": "Bêta",
+      "wip": "En développement"
+    }
+}

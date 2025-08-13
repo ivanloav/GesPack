@@ -1,0 +1,50 @@
+/* Contenedor */
+.breadcrumbs {
+  background: #F7F7F7;
+  padding: 10px 16px;
+  border-radius: 8px;
+}
+
+.breadcrumbs ul{
+  list-style: none;      /* ← adiós 1., 2. */
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.breadcrumbs li{ display:inline-flex; align-items:center; color:#6b7280; font-weight:600; }
+.breadcrumbs li:not(.current)::after{ content:"›"; margin:0 10px; color:#9ca3af; }
+.breadcrumbs a{ color:inherit; text-decoration:none; }
+.breadcrumbs a:hover{ color:#374151; }
+.crumb-icon{ margin-right:6px; vertical-align:-1px; }
+
+/* Item */
+.breadcrumbs li {
+  display: inline-flex;
+  align-items: center;
+  color: #6b7280;          /* gris */
+  font-weight: 600;
+}
+
+/* Separador entre items (no en el último) */
+.breadcrumbs li:not(.current)::after {
+  content: "›";
+  margin: 0 10px;
+  color: #9ca3af;
+}
+
+/* Enlace con estilo heredado (para que no salga azul subrayado) */
+.breadcrumbs a {
+  color: inherit;
+  text-decoration: none;
+}
+.breadcrumbs a:hover {
+  color: #374151;
+}
+
+/* Icono casita */
+.crumb-icon {
+  margin-right: 6px;
+  vertical-align: -1px;
+}

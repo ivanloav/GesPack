@@ -2,26 +2,67 @@
   background-color: white;
   width: 100%;
   height: 100vh;
-  display: grid;
-  grid-template-columns: var(--sidebar-width, 300px) 1fr;
-  grid-template-rows: 80px 1fr;
-  grid-template-areas:
-    "head head"
-    "nav main";
+  display: flex;
+  flex-direction: column;
 }
 
-.backgroundUser.collapsed {
-  grid-template-columns: 80px 1fr; /* Ajusta el ancho de la sidebar colapsada */
+.topbar {
+  height: 80px;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+
+.layout-flex {
+  display: flex;
+  flex: 1;
+  height: calc(100vh - 80px); /* Resta la altura del topbar */
 }
 
 .sidebar-container {
-  grid-area: nav;
   transition: width 0.3s ease;
+  height: 100%; /* Ocupa todo el alto disponible debajo de la topbar */
+  z-index: 100;
 }
 
 .main-content {
-  grid-area: main;
-  transition: margin-left 0.3s ease;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* bloque fijo arriba con título + breadcrumb */
+.page-header {
+  flex: 0 0 auto;
+  padding: 15px 35px;
+  background: white;
+  }
+
+.page-header h1 {
+  margin: 0 0 15px 0;
+  font-size: 48px;
+  font-weight: bolder;
+}
+/* estilo del título */
+.page-title {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* el contenido crece y hace scroll si hace falta */
+.page-body {
+  flex: 1 1 auto;
+  overflow: auto;
+  background: white;
+  border: 1px solid red; /* solo para depurar */
+}
+
+/* por si tu Breadcrumbs tenía posiciones raras */
+.breadcrumbs {
+  position: static;
+  margin: 0;
 }
 
 .flex {

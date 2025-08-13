@@ -1,0 +1,12 @@
+{
+    "title": "Dashboard",
+    "sections": {
+      "general": "General",
+      "admin": "Administration"
+    },
+    "badges": {
+      "hot": "Popular",
+      "beta": "Beta",
+      "wip": "In development"
+    }
+}

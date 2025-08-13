@@ -1,0 +1,12 @@
+{
+    "title": "Panel de control",
+    "sections": {
+      "general": "General",
+      "admin": "Administración"
+    },
+    "badges": {
+      "hot": "Popular",
+      "beta": "Beta",
+      "wip": "En desarrollo"
+    }
+}

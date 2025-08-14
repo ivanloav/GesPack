@@ -8,5 +8,22 @@
       "hot": "Popular",
       "beta": "Beta",
       "wip": "In development"
+    },
+
+     "card": {
+      "orders": {
+        "pendingInvoicing": "Orders",
+        "recorded": "Orders recorded",
+        "pendingPayment": "Orders pending payment",
+        "invoiced": "Orders invoiced"
+      },
+      "products": {
+        "pendingInvoicing": "Products pending invoicing",
+        "outOfStock": "Products out of stock"
+      },
+      "footer": {
+        "orders": "ORDERS LIST",
+        "products": "PRODUCT DETAILS"
+      }
     }
 }

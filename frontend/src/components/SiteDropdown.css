@@ -1,0 +1,38 @@
+.site-dropdown-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+}
+
+.site-dropdown {
+  flex: 1;
+  border: none;
+  padding: 6px 20px;
+  font-size: 14px;
+  font-family: inherit;
+  border-radius: 5px;
+}
+
+.site-dropdown:focus {
+  outline: none;
+}
+
+.site-dropdown option {
+  color: black;
+  background-color: white;
+}
+
+.clear-site-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
+  margin-right: -8px;
+}
+
+.clear-site-icon {
+  color: red;
+  font-size: 32px;
+  margin-top: 5px;
+}

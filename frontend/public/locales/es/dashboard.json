@@ -4,9 +4,27 @@
       "general": "General",
       "admin": "Administración"
     },
+
     "badges": {
       "hot": "Popular",
       "beta": "Beta",
       "wip": "En desarrollo"
+    },
+
+    "card": {
+      "orders": {
+        "pendingInvoicing": "Pedidos pendientes de facturar",
+        "recorded": "Pedidos grabados",
+        "pendingPayment": "Pedidos pendientes de cobrar",
+        "invoiced": "Pedidos facturados"
+      },
+      "products": {
+        "pendingInvoicing": "Productos pendientes de facturar",
+        "outOfStock": "Productos agotados"
+      },
+      "footer": {
+        "orders": "LISTA DE PEDIDOS",
+        "products": "DETALLES DE PRODUCTOS"
+      }
     }
 }

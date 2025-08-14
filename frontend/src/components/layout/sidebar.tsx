@@ -15,6 +15,7 @@ import {
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 import "./Sidebar.css";
+import SiteDropdown from "../SiteDropdown"; // Asegúrate de que la ruta sea correcta
 
 interface CustomSidebarProps {
   onToggleCollapse: (isCollapsed: boolean) => void;
@@ -28,6 +29,7 @@ export const CustomSidebar: React.FC<CustomSidebarProps> = ({ onToggleCollapse }
   const [isSidebarVisible, setIsSidebarVisible] = useState(
     window.innerWidth >= 1024
   );
+  const [selectedSite, setSelectedSite] = useState<number | null>(null);
 
   // 👇 Usamos el namespace 'sidebar' y opcionalmente un keyPrefix si quieres
   const { t } = useTranslation("sidebar");
@@ -62,6 +64,14 @@ export const CustomSidebar: React.FC<CustomSidebarProps> = ({ onToggleCollapse }
         applySidebarWidthVar(false, mobile);
       }
     };
+
+    // 👉 Leer site guardado solo si hay sesión
+    const accessToken = localStorage.getItem("accessToken");
+    const storedSite = localStorage.getItem("selectedSite");
+
+    if (accessToken && storedSite !== null) {
+      setSelectedSite(Number(storedSite));
+    }
 
     window.addEventListener("resize", handleResize);
     handleResize();
@@ -130,7 +140,9 @@ export const CustomSidebar: React.FC<CustomSidebarProps> = ({ onToggleCollapse }
             onClick={(e) => { e.preventDefault(); handleItemClick("/user/dashboard"); }}
           />
         </div>
-
+        <div className="sites-dropdown">
+          
+        </div>
         <Menu
           menuItemStyles={{
             button: ({ level, active }) => ({
@@ -142,6 +154,19 @@ export const CustomSidebar: React.FC<CustomSidebarProps> = ({ onToggleCollapse }
             }),
           }}
         >
+          {!isCollapsed && (
+            <SiteDropdown
+              selectedSite={selectedSite}
+              onSiteChange={(siteId) => {
+                setSelectedSite(siteId);
+                if (siteId === null) {
+                  localStorage.removeItem("selectedSite");
+                } else {
+                  localStorage.setItem("selectedSite", siteId.toString());
+                }
+              }}
+            />
+          )}
           {!isCollapsed && <h4 className="sidebar-section-title">{t("sections.general")}</h4>}
           
           <MenuItem

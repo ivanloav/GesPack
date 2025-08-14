@@ -12,6 +12,7 @@ api.interceptors.response.use(
     if (error.response && error.response.status === 401) {
       // Si obtenemos un 401, el token ha expirado o es inválido
       localStorage.removeItem("accessToken"); // Limpiar token
+      localStorage.removeItem("selectedSite"); // 💥 borra el sitio al cerrar sesión
       window.location.href = "/login"; // Redirigir a la página de login
     }
     return Promise.reject(error); // Rechaza la promesa con el error

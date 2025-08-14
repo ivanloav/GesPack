@@ -4,6 +4,7 @@ import { NavigateFunction } from "react-router-dom"; // Importa los hooks useNav
 export const handleLogout = (navigate: NavigateFunction): void => {
   // Eliminar el token de localStorage o sessionStorage
   localStorage.removeItem("accessToken");
+  localStorage.removeItem("selectedSite"); // 💥 borra el sitio al cerrar sesión
 
   // Si es necesario, también puedes hacer una petición al servidor para invalidar la sesión.
   // Por ejemplo:

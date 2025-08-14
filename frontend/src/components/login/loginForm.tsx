@@ -1,26 +1,38 @@
-import React, { useState } from "react"; // Importa los hooks useState de React
+import React, { useState, useEffect } from "react"; // Importa los hooks useState de React
 import { useNavigate, useLocation } from "react-router-dom"; // Importa los hooks useNavigate y useLocation de React Router
-import { API_BASE_URL } from "../../config"; // Importa la URL base de la API
+//import { API_BASE_URL } from "../../config"; // Importa la URL base de la API
 import "./loginForm.css"; // Importa los estilos del componente LoginForm
 
 export function LoginForm() {
   const [error, setError] = useState<string | null>(null);
-  const location = useLocation();
-  const successMessage = location.state?.successMessage;
+  //const location = useLocation();
+  //const successMessage = location.state?.successMessage;
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate(); // Hook de navegación
+
+  useEffect(() => {
+    const setVh = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };
+
+    setVh();
+    window.addEventListener('resize', setVh);
+    return () => window.removeEventListener('resize', setVh);
+  }, []);
 
   async function handleLogin(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setIsLoading(true);
-
+    
     setTimeout(async () => {
       const form = event.target as HTMLFormElement;
       const email = form.elements.namedItem("email") as HTMLInputElement;
       const password = form.elements.namedItem("password") as HTMLInputElement;
 
       try {
-        const response = await fetch(`${API_BASE_URL}/auth/login`, {
+        //const response = await fetch(`${API_BASE_URL}/auth/login`, {
+        const response = await fetch(`/api/auth/login`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -56,7 +68,7 @@ export function LoginForm() {
             </div>
           )}
           <img src="images/GesPack.png" alt="Logo" className="logo" />
-          {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
+          {/*{successMessage && <p style={{ color: "green" }}>{successMessage}</p>}*/}
           <form className="formLogin" onSubmit={handleLogin}>
             <div className="inputsButtonContainer">
               <h1>Iniciar sesión</h1>

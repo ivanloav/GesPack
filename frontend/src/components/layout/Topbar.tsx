@@ -27,7 +27,7 @@ export function Topbar({ className = "" }: TopbarProps) {
         </div>
 
         <button className="btn btn-light logout-button" onClick={logout}>
-          <FaSignOutAlt size="lg" />
+          <FaSignOutAlt />
           <span style={{ marginLeft: 8 }}>{t("common.logout")}</span>
         </button>
       </div>

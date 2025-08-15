@@ -6,7 +6,7 @@ import { ScreenLayout } from "./components/layout/MainScreenLayout";
 import { LoginForm } from "./components/login/loginForm";
 import { PrivateRoute } from "./components/PrivateRoute";
 
-import { Dashboard } from "./components/dashboard/Dashboard";
+import { Dashboard } from "./components/dashboard/dashboard";
 import { OrderEntry } from "./components/orders/orderEntry";
 // import { Billing } from "./components/billing/Billing";
 // import { Customers } from "./components/customers/Customers";
